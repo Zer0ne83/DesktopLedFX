@@ -1,0 +1,99 @@
+<div [ngClass]="{'isfs':dtlfxWinStates.fullscreen}" [ngStyle]="{'width':dtlfxWinStates.sizePos.width+'px','height':dtlfxWinStates.sizePos.height+'px'}" class="dtlfx-window-container">
+  <div [ngClass]="{'isfs':dtlfxWinStates.fullscreen}"  [ngStyle]="{'width':dtlfxWinStates.sizePos.width+'px','height':dtlfxWinStates.sizePos.height+'px'}" class="dtlfx-window-wrapper outter">
+    <div [ngClass]="{'isfs':dtlfxWinStates.fullscreen}" class [ngStyle]="{'width':dtlfxWinStates.sizePos.width+'px','height':dtlfxWinStates.sizePos.height+'px'}" class="dtlfx-window-wrapper inner">
+      <!-- STATUS MESSAGE LAYER | STARTS -->
+      <div #statusWrap [ngStyle]="{'display':dtlfxStatus.msg!==null?'flex':'none','width':dtlfxWinStates.sizePos.width+'px','height':dtlfxWinStates.sizePos.height+'px'}" class="dtlfx-status-wrapper">
+        <div class="dtlfx-status-content">
+          <div class="dtlfx-status-text"><span class="dtlfx-status-text-msg-part">{{dtlfxStatus.msg}}</span><span *ngIf="dtlfxStatus.prog&&dtlfxStatus.prog.d>.01" [ngStyle]="{'display':dtlfxStatus.prog&&dtlfxStatus.prog.d>.01?'block':'none'}" class="dtlfx-status-text-prog-part"><span class="dtlfx-status-text-prog-part bracket left">(</span><span class="dtlfx-status-text-prog-part value">{{dtlfxStatus.prog.i}}</span><span class="dtlfx-status-text-prog-part bracket right">)</span></span></div>
+          <div *ngIf="dtlfxStatus.prog&&dtlfxStatus.prog.d>.01" [ngStyle]="{'display':dtlfxStatus.prog&&dtlfxStatus.prog.d>.01?'block':'none'}" class="dtlfx-status-pbar">
+            <div class="dtlfx-status-pbar-inner-wrap">
+              <div class="dtlfx-status-pbar-bar" [ngStyle]="{'width':dtlfxStatus.prog.p}"></div>
+              <div class="dtlfx-status-pbar-perc">{{dtlfxStatus.prog.p}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- IMAGES LAYER | STARTS -->
+      <div #imagesCanvasWrap [ngClass]="{'isfs':dtlfxWinStates.fullscreen,'fadedin':dtlfxIsOn}" [ngStyle]="{'display':dtlfxLayerToggles.images?'flex':'none','width':dtlfxWinStates.sizePos.width+'px','height':dtlfxWinStates.sizePos.height+'px','z-index':animGlobals.zIs.images}" class="dtlfx-canvas-wrapper animlayerwrapper images">
+        <canvas #imagesCanvas id="images-canvas" height={{dtlfxWinStates.sizePos.height}} width={{dtlfxWinStates.sizePos.width}} [ngClass]="{'isfs':this.dtlfxWinStates.fullscreen}" class="dtlfx-media-element-layer images-canvas"></canvas>
+      </div>
+      <!-- BANDS CANVAS LAYER | STARTS -->
+      <div #bandsCanvasWrap [ngClass]="{'isfs':dtlfxWinStates.fullscreen,'fadedin':dtlfxIsOn}" [ngStyle]="{'display':dtlfxLayerToggles.bands?'flex':'none','width':dtlfxWinStates.sizePos.width+'px','height':dtlfxWinStates.sizePos.height+'px','z-index':animGlobals.zIs.bands}" class="dtlfx-canvas-wrapper animlayerwrapper bands">
+          <canvas #bandsCanvas id="bands-canvas" height={{dtlfxWinStates.sizePos.height}} width={{dtlfxWinStates.sizePos.width}} [ngClass]="{'isfs':this.dtlfxWinStates.fullscreen}" class="dtlfx-media-element-layer bands-canvas"></canvas>
+      </div>
+      <!-- BLOCKS CANVAS LAYER | STARTS -->
+      <div #blocksCanvasWrap [ngClass]="{'isfs':dtlfxWinStates.fullscreen,'fadedin':dtlfxIsOn}" [ngStyle]="{'display':dtlfxLayerToggles.blocks?'flex':'none','width':dtlfxWinStates.sizePos.width+'px','height':dtlfxWinStates.sizePos.height+'px','z-index':animGlobals.zIs.blocks}" class="dtlfx-canvas-wrapper animlayerwrapper blocks">
+        <canvas #blocksCanvas id="blocks-canvas" height={{dtlfxWinStates.sizePos.height}} width={{dtlfxWinStates.sizePos.width}} [ngClass]="{'isfs':this.dtlfxWinStates.fullscreen}" class="dtlfx-media-element-layer blocks-canvas"></canvas>
+      </div>
+      <!-- PLATES CANVAS LAYER | STARTS -->
+      <div #platesCanvasWrap [ngClass]="{'isfs':dtlfxWinStates.fullscreen,'fadedin':dtlfxIsOn}" [ngStyle]="{'display':dtlfxLayerToggles.plates?'flex':'none','width':dtlfxWinStates.sizePos.width+'px','height':dtlfxWinStates.sizePos.height+'px','z-index':animGlobals.zIs.plates}" class="dtlfx-canvas-wrapper animlayerwrapper plates">
+        <canvas #platesCanvas id="plates-canvas" height={{dtlfxWinStates.sizePos.height}} width={{dtlfxWinStates.sizePos.width}} [ngClass]="{'isfs':this.dtlfxWinStates.fullscreen}" class="dtlfx-media-element-layer plates-canvas"></canvas>
+      </div>
+      <!-- SUBBEAT LAYER STARTS -->
+      <div #subbeatLayerWrap [ngClass]="{'isfs':dtlfxWinStates.fullscreen,'fadedin':dtlfxIsOn}" [ngStyle]="{'width':dtlfxWinStates.sizePos.height+'px','height':dtlfxWinStates.sizePos.height+'px','z-index':animGlobals.zIs.subbeat,'display':dtlfxLayerToggles.subbeat?'flex':'none'}" class="subbeatlayer-outter animlayerwrapper">
+        <div [ngStyle]="{'background':subRadBG,'width':(dtlfxWinStates.sizePos.height)+'px','height':(dtlfxWinStates.sizePos.height)+'px','opacity':subRadTrans}" class="subbeatlayer-radbg"></div>
+        <div [ngStyle]="{'width':(dtlfxWinStates.sizePos.height*.9)+'px','height':(dtlfxWinStates.sizePos.height*.9)+'px','opacity':subTrans}" class="subbeatlayer-inner">
+          <div [ngStyle]="{'background':subBG,'height':'calc('+subH+'% - 32px)','width':'calc('+subH+'% - 32px)'}" class="subbeatlayer-bg"></div>
+          <img [ngStyle]="{'height':subH+'%','width':subH+'%','transform':'rotate('+subRot+'deg)'}" class="subbeatlayer-image" src="assets/subwoofpng.png">
+        </div>
+      </div>
+      <!-- UNUSED MEDIA INDIC -->
+      <div #unusedMediaWrap [ngStyle]="{'display':dtlfxShowStatsBar?'flex':'none'}" class="unused-media-indic-wrapper-outter">
+        <div *ngIf="ledFXCurrentEffect!==null" class="lfx-indic-wrapper">
+          <img [ngStyle]="{'display':ledFXCurrentEffect.isSupported?'block':'none'}" class="lfx-indic-ico ok" src="assets/lfxeffect-indic-ico-ok.png">
+          <img [ngStyle]="{'display':!ledFXCurrentEffect.isSupported?'block':'none'}" class="lfx-indic-ico warn" src="assets/lfxeffect-indic-ico-warn.png">
+          <div class="lfx-indic-effectname"><span [ngStyle]="{'display':ledFXCurrentEffect.isSupported?'block':'none'}" class="effectname ok">{{ledFXCurrentEffect.name}}</span><span [ngStyle]="{'display':!ledFXCurrentEffect.isSupported?'block':'none'}" style="color:#FA5252" class="effectname warn">Unsupported</span></div>
+          <div *ngIf="ledFXCurrentEffect.rgb.type&&ledFXCurrentEffect.rgb.data" class="lfx-indic-gradient-wrap">
+            <div [ngStyle]="{'display':ledFXCurrentEffect.rgb.type==='color'?'flex':'none','background':(getFXGradBG())}" class="lfx-indic-gradient-inner single-color"></div>
+            <div *ngIf="ledFXCurrentEffect.rgb.type==='colors'" [ngStyle]="{'display':ledFXCurrentEffect.rgb.type==='colors'?'flex':'none'}" class="lfx-indic-gradient-inner multi-colors">
+              <div *ngFor="let gC of ledFXCurrentEffect.rgb.data;let gci=index" [ngStyle]="{'background':gC}" class="lfx-indic-mcolor-block"></div>
+            </div>
+            <div [ngStyle]="{'display':ledFXCurrentEffect.rgb.type==='gradient'?'flex':'none','background':(getFXGradBG())}" class="lfx-indic-gradient-inner gradient"></div>
+          </div>
+        </div>
+        <div class="calcs-indic-wrapper">
+          <img src="assets/calc-indic-tha-ico.png" class="calcs-indic-ico-img tha">
+          <div class="calcs-indic-value">{{calcsMeanV}}<span class="plusminusspan">(±)</span>{{calcsSDevV}}</div>
+        </div>
+        <div class="perf-indic-wrapper-outter">
+          <div class="perf-indic-wrapper-inner">
+            <img class="perf-indic-ico-img" src="assets/perf-indic-ico-std.png">
+            <div class="perf-group-wrap packet"><span class="pg-label packet">p:</span><span class="pg-value packet">{{dtlfxMainFilterFPS}}<span class="pfpsslash">></span>{{perfLastResult.p}}</span></div>
+            <div class="perf-group-wrap frame"><span class="pg-label frame">f:</span><span class="pg-value frame">{{perfLastResult.f}}</span></div>
+            <div class="perf-group-wrap anim">
+              <div class="perf-group-wrap anim bands"><span class="pg-label anim bands">ba:</span><span class="pg-value anim bands">{{perfLastResult.a.ba}}</span></div>
+              <div class="perf-group-wrap anim blocks"><span class="pg-label anim blocks">bl:</span><span class="pg-value anim blocks">{{perfLastResult.a.bl}}</span></div>
+              <div class="perf-group-wrap anim images"><span class="pg-label anim images">im:</span><span class="pg-value anim images">{{perfLastResult.a.i}}</span></div>
+              <div class="perf-group-wrap anim plates"><span class="pg-label anim plates">pl:</span><span class="pg-value anim plates">{{perfLastResult.a.p}}</span></div>
+              <div class="perf-group-wrap anim subbeat"><span class="pg-label anim subbeat">sb:</span><span class="pg-value anim subbeat">{{perfLastResult.a.sb}}</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="unused-media-indic-wrapper-inner">
+          <div class="umi-group-wrap images">
+            <div class="umi-ico-wrap images">
+              <img [ngStyle]="{'display':uMediaListsData.images.block.length<blockLimits.images||(uMediaListsData.images.block.length===blockLimits.images&&usedM.images<=uMediaListsData.images.block.length)||!dtlfxIsOn?'block':'none'}" class="umi-ico images ok" src="assets/unused-indic-images-ico-ok.png">
+              <img [ngStyle]="{'display':uMediaListsData.images.block.length===blockLimits.images&&usedM.images>uMediaListsData.images.block.length&&dtlfxIsOn?'block':'none'}" class="umi-ico images warn" src="assets/unused-indic-images-ico-warn.png">
+            </div>
+            <div class="umi-values-wrap images">
+              <div [ngStyle]="{'color':uMediaListsData.images.block.length===blockLimits.images&&usedM.images>uMediaListsData.images.block.length&&dtlfxIsOn?'#fa5252':'#878787'}" class="umi-value images unused"><span [ngStyle]="{'display':uMediaListsData.images.block.length<blockLimits.images?'none':'block'}" class="unused-value proper">{{usedM.images}}</span><span [ngStyle]="{'display':uMediaListsData.images.block.length<blockLimits.images?'block':'none'}" class="unused-value-infinite">∞</span></div>
+              <div class="umi-value images slash">/</div>
+              <div class="umi-value images total">{{uMediaListsData.images.block.length}}</div>
+            </div>
+          </div>
+          <div class="umi-group-wrap plates">
+            <div class="umi-ico-wrap plates">
+              <img [ngStyle]="{'display':uMediaListsData.plates.block.length<blockLimits.plates||(uMediaListsData.plates.block.length===blockLimits.plates&&usedM.plates<=uMediaListsData.plates.block.length)||!dtlfxIsOn?'block':'none'}" class="umi-ico plates ok" src="assets/unused-indic-plates-ico-ok.png">
+              <img [ngStyle]="{'display':uMediaListsData.plates.block.length===blockLimits.plates&&usedM.plates>uMediaListsData.plates.block.length&&dtlfxIsOn?'block':'none'}" class="umi-ico plates warn" src="assets/unused-indic-plates-ico-warn.png">
+            </div>
+            <div class="umi-values-wrap plates">
+              <div [ngStyle]="{'color':usedM.plated>uMediaListsData.plates.block.length&&dtlfxIsOn?'#fa5252':'#878787'}" class="umi-value plates unused"><span [ngStyle]="{'display':uMediaListsData.plates.block.length<blockLimits.plates?'none':'block'}" class="unused-value proper">{{usedM.plates}}</span><span [ngStyle]="{'display':uMediaListsData.plates.block.length<blockLimits.plates?'block':'none'}" class="unused-value-infinite">∞</span></div>
+              <div class="umi-value plates slash">/</div>
+              <div class="umi-value plates total">{{uMediaListsData.plates.block.length}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

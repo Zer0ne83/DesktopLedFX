@@ -1,0 +1,25 @@
+{
+  "name": "dtlfx",
+  "description": "Desktop LFX Visualizer",
+  "author": {
+    "name": "Zer0ne.dev",
+    "email": "01@zer0ne.dev"
+  },
+  "version": "0.0.1",
+  "main": "main.js",
+  "private": true,
+  "dependencies": {
+    "@tweenjs/tween.js": "^21.0.0",
+    "@types/lodash": "^4.14.202",
+    "axios": "^1.6.5",
+    "cue-sdk": "^4.0.0",
+    "date-fns": "^2.30.0",
+    "electron-context-menu": "^3.6.1",
+    "gsap": "^3.12.4",
+    "http-terminator": "^3.2.0",
+    "i": "^0.3.7",
+    "lodash": "^4.17.21",
+    "sacn": "^4.4.0",
+    "simplex-noise": "^4.0.1"
+  }
+}

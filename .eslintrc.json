@@ -1,0 +1,84 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "app/**/*", // ignore nodeJs files
+    "dist/**/*",
+    "release/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "./tsconfig.serve.json",
+          "./src/tsconfig.app.json",
+          "./src/tsconfig.spec.json",
+          "./e2e/tsconfig.e2e.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@typescript-eslint/no-unsafe-argument":0,
+        "@typescript-eslint/no-empty-function": 0,
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-unsafe-assignment": 0,
+        "@typescript-eslint/no-unsafe-call": 0,
+        "@typescript-eslint/no-unsafe-member-access": 0,
+        "prefer-arrow/prefer-arrow-functions": 0,
+        "@angular-eslint/directive-selector":  0,
+        "@typescript-eslint/ban-types":0,
+        "@typescript-eslint/member-delimiter-style":0,
+        "@angular-eslint/use-lifecycle-interface":0,
+        "@typescript-eslint/consistent-type-assertions":0,
+        "no-cond-assign":0,
+        "no-fallthrough":0,
+        "@typescript-eslint/naming-convention":0,
+        "prefer-const":0,
+        "one-var":0,
+        "@typescript-eslint/no-shadow":0,
+        "arrow-body-style":0,
+        "space-before-function-paren":0,
+        "@typescript-eslint/no-unused-vars":0,
+        "@typescript-eslint/no-floating-promises":0,
+        "@typescript-eslint/no-unused-expressions":0,
+        "@typescript-eslint/prefer-for-of":0,
+        "@typescript-eslint/type-annotation-spacing":0,
+        "@typescript-eslint/semi":0,
+        "@typescript-eslint/member-ordering":0,
+        "@typescript-eslint/no-inferrable-types":0,
+        "max-len":0,
+        "@typescript-eslint/no-misused-promises":0,
+        "@typescript-eslint/dot-notation":0,
+        "object-shorthand":0,
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "jsdoc/newline-after-description": 0
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {
+      }
+    }
+  ]
+}
